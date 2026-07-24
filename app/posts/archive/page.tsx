@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { getCachedPosts } from "@/lib/utils/cache";
-import { Post } from "@/lib/types/post";
+import {getCachedPosts} from "@/lib/utils/cache";
+import {Post} from "@/lib/types/post";
 
 export default async function AllPostsPage() {
   const posts: Post[] = await getCachedPosts();

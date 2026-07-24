@@ -1,0 +1,37 @@
+
+> blog-site@0.1.0 build
+> next build
+
+▲ Next.js 16.2.10 (Turbopack)
+- Environments: .env
+- Cache Components enabled
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.1s
+  Running TypeScript ...
+  Finished TypeScript in 983ms ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/10) ...
+  Generating static pages using 9 workers (2/10) 
+  Generating static pages using 9 workers (4/10) 
+  Generating static pages using 9 workers (7/10) 
+✓ Generating static pages using 9 workers (10/10) in 163ms
+  Finalizing page optimization ...
+
+Route (app)           Revalidate  Expire
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/posts
+├ ◐ /posts                    1h      1y
+├ ◐ /posts/[id]
+│ └ /posts/[id]
+├ ◐ /posts/[id]/edit
+│ └ /posts/[id]/edit
+├ ○ /posts/archive            1h      1y
+└ ○ /posts/new
+
+
+○  (Static)             prerendered as static content
+◐  (Partial Prerender)  prerendered as static HTML with dynamic server-streamed content
+ƒ  (Dynamic)            server-rendered on demand
+

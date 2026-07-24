@@ -1,7 +1,6 @@
 import {prisma} from "@/lib/prisma";
 import NotFound from "./not-found";
-import Link from "next/link";
-import BackButton from "@/components/back-button";
+import PostActions from "@/components/postActions";
 
 type PostPageProps = {
   params: Promise<{id: string}>;
@@ -21,6 +20,9 @@ export default async function PostPage({params}: PostPageProps) {
   }
 
   await new Promise((resolve) => setTimeout(resolve, 300));
+
+  // 动态导入 BackButton 组件
+  const BackButton = (await import("@/components/back-button")).default;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -43,7 +45,7 @@ export default async function PostPage({params}: PostPageProps) {
 
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-500">
-                Votes: {post.votes || 0}
+                Votes: {post.votes ?? 0}
               </span>
             </div>
           </div>
@@ -68,7 +70,7 @@ export default async function PostPage({params}: PostPageProps) {
                 })}
               </span>
               <span>•</span>
-              <span>Votes: {post.votes || 0}</span>
+              <span>Votes: {post.votes ?? 0}</span>
             </div>
           </div>
 
@@ -118,14 +120,7 @@ export default async function PostPage({params}: PostPageProps) {
                   Share
                 </button>
               </div>
-              <div className="flex items-center gap-2">
-                <button className="text-sm text-gray-500 hover:text-gray-700">
-                  Edit
-                </button>
-                <button className="text-sm text-gray-500 hover:text-gray-700">
-                  Delete
-                </button>
-              </div>
+              <PostActions postId={post.id} />
             </div>
           </div>
         </article>

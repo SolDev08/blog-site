@@ -7,7 +7,7 @@ export default function Home() {
       <div className="relative overflow-hidden bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="pt-32 pb-12 md:pt-40 md:pb-20">
-            <div className="text-center">
+            <div className="text-center mx-auto ">
               <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
                 Welcome to Next Blog
                 <span className="text-blue-600">.</span>
@@ -40,7 +40,7 @@ export default function Home() {
       {/* Features Section */}
       <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
+          <div className="text-center lg:text-center">
             <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
               Why Choose Next Blog?
             </h2>
@@ -164,7 +164,7 @@ export default function Home() {
       {/* Recent Posts Preview */}
       <div className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
+          <div className="text-center lg:text-center">
             <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
               Recent Posts
             </h2>
