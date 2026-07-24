@@ -1,21 +1,11 @@
 import Link from "next/link";
-import {PrismaClient} from "../generated/prisma/client";
-import {PrismaBetterSqlite3} from "@prisma/adapter-better-sqlite3";
 import RecentlyViewedPosts from "@/components/recently-viewed-posts";
 import {Suspense} from "react";
-
-const adapter = new PrismaBetterSqlite3({
-  url: process.env.DATABASE_URL || "file:./dev.db",
-});
-const prisma = new PrismaClient({adapter});
+import {getCachedPosts} from "@/lib/utils/cache";
+import { Post } from "@/lib/types/post";
 
 export default async function PostsPage() {
-  const posts = await prisma.post.findMany({
-    take: 12,
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
+  const posts = await getCachedPosts();
 
   return (
     <div className="min-h-[calc(100vh-120px)]">
@@ -25,7 +15,8 @@ export default async function PostsPage() {
             Latest Posts
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover and read our latest blog posts on technology, development, and more.
+            Discover and read our latest blog posts on technology, development,
+            and more.
           </p>
         </div>
 
@@ -36,7 +27,7 @@ export default async function PostsPage() {
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
+            {posts.map((post: Post) => (
               <article
                 key={post.id}
                 className="group bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-md"
@@ -52,10 +43,7 @@ export default async function PostsPage() {
                     </time>
                   </div>
 
-                  <Link
-                    href={`./posts/${post.id}`}
-                    className="block"
-                  >
+                  <Link href={`./posts/${post.id}`} className="block">
                     <h2 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                       {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
                     </h2>
@@ -96,7 +84,9 @@ export default async function PostsPage() {
         )}
 
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Recently Viewed</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Recently Viewed
+          </h2>
           <Suspense fallback={<p>Loading Recently Viewed Posts...</p>}>
             <RecentlyViewedPosts />
           </Suspense>
