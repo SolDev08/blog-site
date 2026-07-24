@@ -1,5 +1,7 @@
 import {prisma} from "@/lib/prisma";
 import NotFound from "./not-found";
+import Link from "next/link";
+import BackButton from "@/components/back-button";
 
 type PostPageProps = {
   params: Promise<{id: string}>;
@@ -26,6 +28,7 @@ export default async function PostPage({params}: PostPageProps) {
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between">
+            <BackButton />
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-500">Post #{post.id}</span>
               <span className="text-sm text-gray-400">•</span>
@@ -37,6 +40,7 @@ export default async function PostPage({params}: PostPageProps) {
                 })}
               </span>
             </div>
+
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-500">
                 Votes: {post.votes || 0}

@@ -2,22 +2,39 @@ import Link from "next/link";
 import RecentlyViewedPosts from "@/components/recently-viewed-posts";
 import {Suspense} from "react";
 import {getCachedPosts} from "@/lib/utils/cache";
-import { Post } from "@/lib/types/post";
+import {Post} from "@/lib/types/post";
 
 export default async function PostsPage() {
-  const posts = await getCachedPosts();
+  const allPosts = await getCachedPosts();
+  const posts = allPosts.slice(0, 5); // 只显示最新的5条
 
   return (
     <div className="min-h-[calc(100vh-120px)]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Latest Posts
-          </h1>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <h1 className="text-4xl font-bold text-gray-900">Latest Posts</h1>
+            <Link
+              href="/posts/new"
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              New Post
+            </Link>
+          </div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Discover and read our latest blog posts on technology, development,
             and more.
           </p>
+          {allPosts.length >= 5 && (
+            <div className="mt-4">
+              <Link
+                href="/posts/all"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors"
+              >
+                View all posts ({allPosts.length})
+              </Link>
+            </div>
+          )}
         </div>
 
         {posts.length === 0 ? (
