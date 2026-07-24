@@ -1,6 +1,4 @@
 import Link from "next/link";
-
-// 从生成的客户端导入
 import {PrismaClient} from "../generated/prisma/client";
 import {PrismaBetterSqlite3} from "@prisma/adapter-better-sqlite3";
 
@@ -10,7 +8,6 @@ const adapter = new PrismaBetterSqlite3({
 const prisma = new PrismaClient({adapter});
 
 export default async function PostsPage() {
-  // 从SQLite数据库获取帖子数据，按createdAt降序
   const posts = await prisma.post.findMany({
     take: 5,
     orderBy: {
