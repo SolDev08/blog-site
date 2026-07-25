@@ -12,10 +12,11 @@ export default function Home() {
                 Welcome to Next Blog
                 <span className="text-blue-600">.</span>
               </h1>
-              <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
                 Discover amazing content, share your thoughts, and connect with
                 a community of readers and writers.
               </p>
+
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center">
                 <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-flex sm:items-center">
                   <Link
