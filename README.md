@@ -7,6 +7,7 @@ A full-stack blog application built to practice and demonstrate modern web devel
 - **Framework:** Next.js (App Router)
 - **Language:** TypeScript
 - **Database:** SQLite + Prisma ORM
+- **Authentication:** Better Auth
 - **Styling:** Tailwind CSS
 - **UI Components:** shadcn/ui
 
@@ -16,7 +17,8 @@ A full-stack blog application built to practice and demonstrate modern web devel
 - 🗂️ Archive page for older posts
 - ⬆️ Upvote system for posts
 - 🕒 Recently viewed posts tracking
-- ✍️ Create new posts
+- ✍️ Create, edit, and delete posts (requires login)
+- 🔐 User authentication (sign up / log in / log out) powered by Better Auth
 
 ## Screenshots
 
@@ -84,8 +86,9 @@ prisma/
 
 - Implemented server-side data fetching with Prisma and proper type-safe query parameters
 - Built reusable, type-safe components (e.g. upvote button with optimistic UI updates)
-- Structured layout with nested routing and dynamic segments (\`[id]\`)
+- Structured layout with nested routing and dynamic segments (`[id]`)
 - Handled edge cases around interactive elements nested inside navigational links
+- Added session-based authentication with route protection at both the middleware and server-action level
 
 ## About This Project
 
