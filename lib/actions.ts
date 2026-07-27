@@ -26,3 +26,10 @@ export async function updatePost(id: number, formData: FormData) {
   revalidatePath("/posts");
   redirect(`/posts/archive`);
 }
+
+export async function upvotePost(postId: number) {
+  await prisma.post.update({
+    where: {id: postId},
+    data: {votes: {increment: 1}},
+  });
+}

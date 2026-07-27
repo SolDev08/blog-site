@@ -84,7 +84,7 @@ export default async function AllPostsPage() {
                     <UpvoteBtn postId={post.id} />
                   </div>
                   <span className="text-sm text-gray-500">
-                    {post.votes || 0} votes
+                    {post.votes ?? 0} votes
                   </span>
                 </div>
               </article>
