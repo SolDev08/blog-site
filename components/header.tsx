@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import UserMenu from "./auth/user-menu";
 
 export default function Header() {
   return (
@@ -18,21 +19,7 @@ export default function Header() {
               />
             </Link>
           </div>
-
-          <nav className="flex items-center gap-8">
-            <Link
-              href="/"
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/posts"
-              className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-            >
-              Posts
-            </Link>
-          </nav>
+          <UserMenu />
         </div>
       </div>
     </header>

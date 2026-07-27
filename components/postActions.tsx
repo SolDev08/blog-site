@@ -1,11 +1,32 @@
 "use client";
 
 import {useState} from "react";
+import {useRouter} from "next/navigation";
 import {deletePost} from "@/lib/actions";
 import Link from "next/link";
 
 export default function PostActions({postId}: {postId: number}) {
+  const router = useRouter();
   const [showConfirm, setShowConfirm] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDelete = async () => {
+    setIsDeleting(true);
+    try {
+      await deletePost(postId);
+      router.push("/posts"); // 删除成功后，前端自己跳转
+    } catch (error) {
+      console.error("Delete failed:", error);
+      if (error instanceof Error && error.message.includes("Unauthorized")) {
+        router.push("/auth/login");
+      } else {
+        alert("Something went wrong while deleting the post.");
+      }
+    } finally {
+      setIsDeleting(false);
+      setShowConfirm(false);
+    }
+  };
 
   return (
     <>
@@ -37,15 +58,17 @@ export default function PostActions({postId}: {postId: number}) {
             <div className="mt-6 flex justify-end gap-3">
               <button
                 onClick={() => setShowConfirm(false)}
-                className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                disabled={isDeleting}
+                className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 disabled:opacity-60"
               >
                 Cancel
               </button>
               <button
-                onClick={() => deletePost(postId)}
-                className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                onClick={handleDelete}
+                disabled={isDeleting}
+                className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:opacity-60"
               >
-                Delete
+                {isDeleting ? "Deleting..." : "Delete"}
               </button>
             </div>
           </div>

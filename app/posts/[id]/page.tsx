@@ -9,12 +9,16 @@ type PostPageProps = {
 
 export default async function PostPage({params}: PostPageProps) {
   const {id} = await params;
-
+  const postId = Number(id);
   const post = await prisma.post.findUnique({
     where: {
-      id: Number(id),
+      id: postId,
     },
   });
+
+  if (isNaN(postId)) {
+    return NotFound();
+  }
 
   if (!post) {
     return NotFound();

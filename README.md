@@ -20,29 +20,35 @@ A full-stack blog application built to practice and demonstrate modern web devel
 
 ## Screenshots
 
-_Home page_
+_1.Home page_
 
 ![Home page](./public/screenshots/home.png)
 
-_Create post page_
+_2.Login page_
+![Home page](./public/screenshots/login.png)
 
-![Create post page](./public/screenshots/create-post.png)
+_3.SignUp page_
+![Home page](./public/screenshots/signup.png)
 
-_Edit post page_
-
-![Edit post page](./public/screenshots/edit-post.png)
-
-_Post detail - header info_
+_4.Post detail - header info_
 
 ![Post detail](./public/screenshots/post-detail-1.png)
 
-_Post detail - content_
+_5.Post detail - content_
 
 ![Post detail](./public/screenshots/post-detail-2.png)
 
-_Post detail - upvote & actions_
+_6.Post detail - upvote & actions_
 
 ![Post detail](./public/screenshots/post-detail-3.png)
+
+_7.Create post page_
+
+![Create post page](./public/screenshots/create-post.png)
+
+_8.Edit post page_
+
+![Edit post page](./public/screenshots/edit-post.png)
 
 ## Getting Started
 
