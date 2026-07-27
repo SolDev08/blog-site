@@ -24,5 +24,5 @@ export async function updatePost(id: number, formData: FormData) {
   });
 
   revalidatePath("/posts");
-  redirect(`/posts/${id}`);
+  redirect(`/posts/archive`);
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {getCachedPosts} from "@/lib/utils/cache";
 import {Post} from "@/lib/types/post";
+import UpvoteBtn from "@/components/upvote-btn";
 
 export default async function AllPostsPage() {
   const posts: Post[] = await getCachedPosts();
@@ -60,25 +61,28 @@ export default async function AllPostsPage() {
                 </Link>
 
                 <div className="flex items-center justify-between">
-                  <Link
-                    href={`/posts/${post.id}`}
-                    className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
-                  >
-                    Read more
-                    <svg
-                      className="ml-1 w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                  <div className="flex gap-4">
+                    <Link
+                      href={`/posts/${post.id}`}
+                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </Link>
+                      Read more
+                      <svg
+                        className="ml-1 w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </Link>
+                    <UpvoteBtn postId={post.id} />
+                  </div>
                   <span className="text-sm text-gray-500">
                     {post.votes || 0} votes
                   </span>
